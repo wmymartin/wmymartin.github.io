@@ -1,0 +1,374 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="数据科学,大数据">
+    <title>Hadoop压缩引申 | 我思故我在</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x538B;&amp;#x7F29;&amp;#x7F16;&amp;#x7801;&amp;#x7684;&amp;#x76EE;&amp;#x7684;
+&amp;#x51CF;&amp;#x5C11;&amp;#x5B58;&amp;#x50A8;&amp;#x7A7A;&amp;#x95F4;
+&amp;#x52A0;&amp;#x5FEB;&amp;#x7F51;&amp;#x7EDC;&amp;#x4F20;&amp;#x8F93;
+
+&amp;#x538B;&amp;#x7F29;&amp;#x65B9;&amp;#x5F0F;&amp;#x9009;&amp;#x6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop压缩引申">
+<meta property="og:url" content="http://yoursite.com/2017/01/02/Hadoop压缩/index.html">
+<meta property="og:site_name" content="我思故我在">
+<meta property="og:description" content="&amp;#x538B;&amp;#x7F29;&amp;#x7F16;&amp;#x7801;&amp;#x7684;&amp;#x76EE;&amp;#x7684;
+&amp;#x51CF;&amp;#x5C11;&amp;#x5B58;&amp;#x50A8;&amp;#x7A7A;&amp;#x95F4;
+&amp;#x52A0;&amp;#x5FEB;&amp;#x7F51;&amp;#x7EDC;&amp;#x4F20;&amp;#x8F93;
+
+&amp;#x538B;&amp;#x7F29;&amp;#x65B9;&amp;#x5F0F;&amp;#x9009;&amp;#x6">
+<meta property="og:updated_time" content="2017-01-09T16:12:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hadoop压缩引申">
+<meta name="twitter:description" content="&amp;#x538B;&amp;#x7F29;&amp;#x7F16;&amp;#x7801;&amp;#x7684;&amp;#x76EE;&amp;#x7684;
+&amp;#x51CF;&amp;#x5C11;&amp;#x5B58;&amp;#x50A8;&amp;#x7A7A;&amp;#x95F4;
+&amp;#x52A0;&amp;#x5FEB;&amp;#x7F51;&amp;#x7EDC;&amp;#x4F20;&amp;#x8F93;
+
+&amp;#x538B;&amp;#x7F29;&amp;#x65B9;&amp;#x5F0F;&amp;#x9009;&amp;#x6">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "undefined",
+  "name": "my",
+  "url": "http://yoursite.com"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="https://fonts.gmirror.org/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>我思故我在</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">my</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        首页
+    </a>
+
+    
+    
+
+    
+
+    
+    <a href="/categories" class="item" >
+        <i class="grid layout icon"></i>
+        分类
+    </a>
+
+    
+    
+
+    
+
+    
+    <a href="/about" class="item" >
+        <i class="sound icon"></i>
+        关于
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-Hadoop压缩" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    Hadoop压缩引申
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h2 id="&#x538B;&#x7F29;&#x7F16;&#x7801;&#x7684;&#x76EE;&#x7684;"><a href="#&#x538B;&#x7F29;&#x7F16;&#x7801;&#x7684;&#x76EE;&#x7684;" class="headerlink" title="&#x538B;&#x7F29;&#x7F16;&#x7801;&#x7684;&#x76EE;&#x7684;"></a>&#x538B;&#x7F29;&#x7F16;&#x7801;&#x7684;&#x76EE;&#x7684;</h2><ol class="ui list">
+<li>&#x51CF;&#x5C11;&#x5B58;&#x50A8;&#x7A7A;&#x95F4;</li>
+<li>&#x52A0;&#x5FEB;&#x7F51;&#x7EDC;&#x4F20;&#x8F93;</li>
+</ol>
+<h2 id="&#x538B;&#x7F29;&#x65B9;&#x5F0F;&#x9009;&#x62E9;"><a href="#&#x538B;&#x7F29;&#x65B9;&#x5F0F;&#x9009;&#x62E9;" class="headerlink" title="&#x538B;&#x7F29;&#x65B9;&#x5F0F;&#x9009;&#x62E9;"></a>&#x538B;&#x7F29;&#x65B9;&#x5F0F;&#x9009;&#x62E9;</h2><h3 id="&#x6839;&#x636E;&#x5E94;&#x7528;&#x573A;&#x5408;&#xFF0C;&#x5728;&#x4E0B;&#x9762;&#x5404;&#x4E2A;&#x539F;&#x5219;&#x95F4;&#x8FDB;&#x884C;&#x5E73;&#x8861;&#x3002;"><a href="#&#x6839;&#x636E;&#x5E94;&#x7528;&#x573A;&#x5408;&#xFF0C;&#x5728;&#x4E0B;&#x9762;&#x5404;&#x4E2A;&#x539F;&#x5219;&#x95F4;&#x8FDB;&#x884C;&#x5E73;&#x8861;&#x3002;" class="headerlink" title="&#x6839;&#x636E;&#x5E94;&#x7528;&#x573A;&#x5408;&#xFF0C;&#x5728;&#x4E0B;&#x9762;&#x5404;&#x4E2A;&#x539F;&#x5219;&#x95F4;&#x8FDB;&#x884C;&#x5E73;&#x8861;&#x3002;"></a>&#x6839;&#x636E;&#x5E94;&#x7528;&#x573A;&#x5408;&#xFF0C;&#x5728;&#x4E0B;&#x9762;&#x5404;&#x4E2A;&#x539F;&#x5219;&#x95F4;&#x8FDB;&#x884C;&#x5E73;&#x8861;&#x3002;</h3><ol class="ui list">
+<li>&#x538B;&#x7F29;&#x6027;&#x80FD;</li>
+<li>&#x89E3;&#x538B;&#x6027;&#x80FD;</li>
+<li>&#x8BFB;&#x5199;&#x78C1;&#x76D8;&#x6240;&#x9700;IO</li>
+<li>&#x7F51;&#x7EDC;&#x4F20;&#x8F93;&#x5E26;&#x5BBD;&#x5360;&#x7528;</li>
+<li>&#x65E0;&#x635F;&#x6216;&#x6709;&#x635F;&#x65B9;&#x5F0F;&#x9009;&#x62E9;</li>
+<li>&#x5951;&#x5408;&#x7279;&#x5B9A;&#x573A;&#x5408;&#x7684;&#x7279;&#x70B9;</li>
+<li>&#x6570;&#x636E;&#x5B58;&#x50A8;&#x65B9;&#x5F0F;&#xFF0C;&#x884C;&#x5B58;&#x50A8;&#x6216;&#x8005;&#x5217;&#x5B58;&#x50A8;</li>
+</ol>
+<h2 id="Mapreduce&#x5E94;&#x7528;"><a href="#Mapreduce&#x5E94;&#x7528;" class="headerlink" title="Mapreduce&#x5E94;&#x7528;"></a>Mapreduce&#x5E94;&#x7528;</h2><ol class="ui list">
+<li>&#x538B;&#x7F29;&#x901F;&#x5EA6;&#xFF1A;&#x7A7A;&#x95F4;&#x65F6;&#x95F4;&#x6298;&#x4E2D;&#x3002;</li>
+<li>&#x53EF;&#x5206;&#x5272;&#x6027;&#xFF1A;&#x6D77;&#x91CF;&#x6570;&#x636E;&#x6570;&#x636E;&#x5904;&#x7406;&#xFF0C;&#x65B9;&#x4FBF;&#x591A;&#x4E2A;Map&#x5E76;&#x884C;&#x8FD0;&#x7B97;&#xFF0C;&#x540C;&#x65F6;&#x4FDD;&#x8BC1;&#x6570;&#x636E;&#x672C;&#x5730;&#x884C;&#x3002;</li>
+<li>&#x89E3;&#x538B;&#x901F;&#x5EA6;&#xFF1A;HDFS&#x4E00;&#x6B21;&#x5199;&#x5165;&#xFF0C;&#x591A;&#x6B21;&#x8BFB;&#x53D6;&#x76F8;&#x4E00;&#x81F4;&#x3002;&#x8981;&#x6C42;&#x66F4;&#x5FEB;&#x7684;&#x89E3;&#x538B;&#x901F;&#x5EA6;&#x3002;</li>
+<li>&#x65E0;&#x635F;&#x538B;&#x7F29;&#xFF1A;&#x6570;&#x636E;&#x5FC5;&#x987B;&#x51C6;&#x786E;&#x8FD8;&#x539F;&#x3002;</li>
+</ol>
+<h2 id="MR&#x5E38;&#x7528;&#x538B;&#x7F29;"><a href="#MR&#x5E38;&#x7528;&#x538B;&#x7F29;" class="headerlink" title="MR&#x5E38;&#x7528;&#x538B;&#x7F29;"></a>MR&#x5E38;&#x7528;&#x538B;&#x7F29;</h2><h3 id="LZO&#x683C;&#x5F0F;"><a href="#LZO&#x683C;&#x5F0F;" class="headerlink" title="LZO&#x683C;&#x5F0F;"></a>LZO&#x683C;&#x5F0F;</h3><p>&#x8FFD;&#x6839;&#x6EAF;&#x6E90;&#xFF0C;<a href="http://www.oberhumer.com/opensource/lzo/" target="_blank" rel="external">LZO&#x7B97;&#x6CD5;</a>&#x91C7;&#x7528;C&#x7F16;&#x5199;&#xFF0C;&#x5C5E;&#x4E8E;&#x81EA;&#x9002;&#x5E94;&#x5B57;&#x5178;&#x7F16;&#x7801;&#x7684;&#x4E00;&#x79CD;&#xFF0C;&#x4E3B;&#x8981;&#x4F18;&#x70B9;&#x6709;&#xFF1A;</p>
+<blockquote>
+<ul class="ui list">
+<li>&#x89E3;&#x538B;&#x7B80;&#x5355;&#x800C;&#x4E14;&#x975E;&#x5E38;&#x5FEB;&#x901F;</li>
+<li>&#x89E3;&#x538B;&#x4E0D;&#x5360;&#x5185;&#x5B58;</li>
+<li>&#x538B;&#x7F29;&#x5360;&#x7528;64K&#x5185;&#x5B58;</li>
+<li>&#x53EF;&#x8BBE;&#x5B9A;&#x4E0D;&#x540C;&#x538B;&#x7F29;&#x7B49;&#x7EA7;</li>
+</ul>
+</blockquote>
+<h4 id="lzop&#x5DE5;&#x5177;"><a href="#lzop&#x5DE5;&#x5177;" class="headerlink" title="lzop&#x5DE5;&#x5177;"></a>lzop&#x5DE5;&#x5177;</h4><p>P&#x8868;&#x793A;Packer&#x6253;&#x5305;&#x7684;&#x610F;&#x601D;&#xFF0C;&#x57FA;&#x4E8E;LZO&#x7B97;&#x6CD5;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#x3002;&#x65B9;&#x4FBF;&#x5728;shell&#x4E0B;&#x751F;&#x6210;.lzo&#x540E;&#x7F00;&#x6587;&#x4EF6;&#xFF0C;&#x8BE5;&#x6587;&#x4EF6;&#x5E76;&#x975E;&#x5143;&#x6570;&#x636E;&#x538B;&#x7F29;&#x7ED3;&#x679C;&#xFF0C;&#x8FD8;&#x4FDD;&#x5B58;&#x4E86;&#x6587;&#x4EF6;&#x540D;&#xFF0C;&#x65F6;&#x95F4;&#x7B49;&#x4FE1;&#x606F;&#x3002;</p>
+<h4 id="hadoop-lzo"><a href="#hadoop-lzo" class="headerlink" title="hadoop-lzo"></a>hadoop-lzo</h4><p>lzo&#x9075;&#x5FAA;GPL&#x5F00;&#x6E90;&#x534F;&#x8BAE;&#xFF0C;&#x800C;Hadoop&#x4E3A;Apache&#x540D;&#x4E0B;&#x5F00;&#x6E90;&#x8F6F;&#x4EF6;&#xFF0C;&#x975E;&#x5FC5;&#x9700;&#x5F00;&#x6E90;&#x3002;&#x6240;&#x4EE5;hadoop&#x652F;&#x6301;LZO&#x683C;&#x5F0F;&#x4F46;&#x9700;&#x53E6;&#x5916;&#x5B89;&#x88C5;&#x3002;hadoop-lzo&#x5305;&#x62EC;&#x4E24;&#x90E8;&#x5206;&#xFF1A;lzo&#x7684;native lib&#xFF0C;&#x63A5;&#x53E3;&#x548C;&#x5DE5;&#x5177;jar&#x5305;&#x3002;&#x63A5;&#x53E3;&#x5305;&#x62EC;MR&#x4E2D;&#x5FC5;&#x987B;&#x5B9E;&#x73B0;&#x7684;InputFormat&#x53CA;RecordReader&#x7C7B;&#x3002;&#x5DE5;&#x5177;&#x6709;&#x5EFA;&#x7ACB;&#x7D22;&#x5F15;&#x7684;lzoIndexer&#x5DE5;&#x5177;&#x3002;</p>
+<h3 id="Snappy&#x683C;&#x5F0F;"><a href="#Snappy&#x683C;&#x5F0F;" class="headerlink" title="Snappy&#x683C;&#x5F0F;"></a>Snappy&#x683C;&#x5F0F;</h3><p>&#x53C8;&#x79F0;<a href="http://blog.cloudera.com/blog/2011/09/snappy-and-hadoop/" target="_blank" rel="external">Zippy</a>&#xFF0C;&#x91C7;&#x7528;C++&#x7F16;&#x5199;&#xFF0C;&#x57FA;&#x4E8E;LZ77&#x7F16;&#x7801;&#x5373;&#x5C5E;&#x4E8E;LZ&#x538B;&#x7F29;&#x7B97;&#x6CD5;&#x5BB6;&#x65CF;&#xFF0C;&#x540C;&#x6837;&#x5C5E;&#x4E8E;&#x81EA;&#x9002;&#x5E94;&#x7F16;&#x7801;&#xFF0C;&#x5B83;&#x9075;&#x5FAA;BSD&#x5F00;&#x6E90;&#x534F;&#x8BAE;&#x3002;&#x4F18;&#x70B9;&#x662F;&#x901F;&#x5EA6;&#x540C;&#x6837;&#x6BD4;&#x8F83;&#x5FEB;&#x3002;&#x5728;MR&#x4E2D;&#x4F7F;&#x7528;&#x4E0E;LZO&#x7C7B;&#x4F3C;&#xFF0C;&#x5305;&#x62EC;native lib&#x548C;jar&#x5305;&#x3002;&#x4F46;&#x5B83;&#x5B58;&#x5728;&#x4EE5;&#x4E0B;&#x7F3A;&#x70B9;&#xFF1A;</p>
+<blockquote>
+<ul class="ui list">
+<li>&#x4E0D;&#x53EF;&#x5206;&#x5272;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x5355;&#x6587;&#x4EF6;&#x53EA;&#x80FD;&#x88AB;&#x5355;&#x4E2A;Map&#x5904;&#x7406;&#xFF0C;&#x4E0D;&#x80FD;&#x901A;&#x8FC7;&#x7C7B;&#x4F3C;index&#x65B9;&#x5F0F;&#x5206;&#x5FEB;&#x5904;&#x7406;</li>
+<li>&#x6CA1;&#x6709;&#x7C7B;&#x4F3C;LZOP&#x7684;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;</li>
+</ul>
+</blockquote>
+<h4 id="&#x5E94;&#x7528;&#x573A;&#x666F;"><a href="#&#x5E94;&#x7528;&#x573A;&#x666F;" class="headerlink" title="&#x5E94;&#x7528;&#x573A;&#x666F;"></a>&#x5E94;&#x7528;&#x573A;&#x666F;</h4><p>&#x5B83;&#x4E00;&#x822C;&#x4E0D;&#x76F4;&#x63A5;&#x7528;&#x6765;&#x538B;&#x7F29;&#x6587;&#x4EF6;&#xFF0C;&#x800C;&#x662F;&#x7528;&#x4E8E;&#x538B;&#x7F29;&#x4F5C;&#x4E3A;&#x7236;&#x5BB9;&#x5668;&#x7C7B;&#x578B;&#x7684;&#x5757;&#x6570;&#x636E;&#x3002;&#x5982;Sequence file&#x6216;&#x8005;Avro file&#x3002;&#x5B83;&#x5728;&#x4E0D;&#x8981;&#x6C42;&#x53EF;&#x5206;&#x7247;&#x7684;HBase&#x4E2D;&#x7528;&#x7684;&#x591A;&#xFF0C;&#x53C8;&#x6216;&#x8005;&#x7528;&#x6765;&#x538B;&#x7F29;&#x6BD4;&#x8F83;&#x5927;&#x7684;Map&#x8F93;&#x51FA;&#x4E2D;&#x95F4;&#x7ED3;&#x679C;&#x3002;</p>
+<h3 id="&#x5217;&#x5F0F;&#x5B58;&#x50A8;"><a href="#&#x5217;&#x5F0F;&#x5B58;&#x50A8;" class="headerlink" title="&#x5217;&#x5F0F;&#x5B58;&#x50A8;"></a>&#x5217;&#x5F0F;&#x5B58;&#x50A8;</h3><p>&#x5217;&#x5F0F;&#x5B58;&#x50A8;&#x6309;&#x5217;&#x5B58;&#x50A8;&#x6570;&#x636E;&#xFF0C;&#x540C;&#x4E00;&#x5217;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x76F8;&#x540C;&#xFF0C;&#x53EF;&#x4EE5;&#x7075;&#x6D3B;&#x91C7;&#x7528;&#x4E0D;&#x540C;&#x7684;&#x7F16;&#x7801;&#xFF0C;&#x63D0;&#x9AD8;&#x5B58;&#x50A8;&#x6548;&#x7387;&#x3002;&#x5927;&#x81F4;&#x6709;&#x4E0B;&#x5217;&#x4F18;&#x70B9;&#xFF1A;</p>
+<blockquote>
+<ul class="ui list">
+<li>&#x67E5;&#x8BE2;&#x65F6;&#x66F4;&#x5FEB;&#x8DF3;&#x8FC7;&#x4E0D;&#x76F8;&#x5173;&#x6570;&#x636E;&#xFF0C;&#x964D;&#x4F4E;IO&#x91CF;&#x3002;&#x53EA;&#x67E5;&#x8BE2;&#x90E8;&#x5206;&#x5217;&#x65F6;&#xFF0C;&#x53EA;&#x9700;&#x8BFB;&#x53D6;&#x8BE5;&#x5217;&#x6570;&#x636E;&#x3002;</li>
+<li>&#x6309;&#x5217;&#x7F16;&#x7801;&#xFF0C;&#x5B58;&#x50A8;&#x6548;&#x7387;&#x9AD8;&#x3002;</li>
+</ul>
+</blockquote>
+<h4 id="Orc&#x683C;&#x5F0F;"><a href="#Orc&#x683C;&#x5F0F;" class="headerlink" title="Orc&#x683C;&#x5F0F;"></a>Orc&#x683C;&#x5F0F;</h4><p><a href="https://orc.apache.org/" target="_blank" rel="external">ORC</a>&#x662F;&#x5217;&#x5F0F;&#x5B58;&#x50A8;&#x4E00;&#x79CD;,O&#x8868;&#x793A;Optimized&#x7684;&#x610F;&#x601D;&#x3002;&#x5B83;&#x4E3B;&#x8981;&#x7528;&#x6765;&#x514B;&#x670D;Hive&#x5176;&#x5B83;&#x683C;&#x5F0F;&#x7F3A;&#x9677;&#xFF0C;MR&#x548C;Spark&#x540C;&#x6837;&#x652F;&#x6301;&#xFF0C;&#x4E5F;&#x652F;&#x6301;SparkSql&#xFF0C;Impala&#x5219;&#x4E0D;&#x652F;&#x6301;&#x3002;&#x538B;&#x7F29;&#x6548;&#x7387;&#x548C;&#x67E5;&#x8BE2;&#x6548;&#x7387;&#x6BD4;Parquet&#x90FD;&#x9AD8;&#x3002;&#x6709;&#x4E0B;&#x9762;&#x7684;&#x4F18;&#x70B9;&#xFF1A;</p>
+<blockquote>
+<ul class="ui list">
+<li>&#x9488;&#x5BF9;&#x4E0D;&#x540C;&#x5B57;&#x6BB5;&#x7C7B;&#x578B;&#x4F7F;&#x7528;&#x4E0D;&#x540C;&#x538B;&#x7F29;&#x7B97;&#x6CD5;&#xFF0C;&#x6BD4;&#x5982;&#x6574;&#x5F62;&#x4F7F;&#x7528;&#x884C;&#x7A0B;&#x957F;&#x5EA6;&#x7F16;&#x7801;&#xFF0C;&#x5B57;&#x7B26;&#x4F7F;&#x7528;&#x5B57;&#x5178;&#x7F16;&#x7801;</li>
+<li>&#x5728;&#x6587;&#x4EF6;&#x4E2D;&#x4FDD;&#x5B58;&#x4E86;&#x8F7B;&#x91CF;&#x7684;&#x7D22;&#x5F15;&#x4FE1;&#x606F;&#xFF0C;&#x6BD4;&#x5982;&#x8BB0;&#x5F55;&#x6BCF;10000&#x884C;&#x7EDF;&#x8BA1;&#x7B49;&#x4FE1;&#x606F;&#x3002;</li>
+<li>&#x652F;&#x6301;&#x591A;&#x79CD;&#x590D;&#x6742;&#x6570;&#x636E;&#x683C;&#x5F0F;</li>
+</ul>
+</blockquote>
+<h4 id="&#x5176;&#x5B83;&#x538B;&#x7F29;&#x7B97;&#x6CD5;"><a href="#&#x5176;&#x5B83;&#x538B;&#x7F29;&#x7B97;&#x6CD5;" class="headerlink" title="&#x5176;&#x5B83;&#x538B;&#x7F29;&#x7B97;&#x6CD5;"></a>&#x5176;&#x5B83;&#x538B;&#x7F29;&#x7B97;&#x6CD5;</h4><h5 id="&#x6E38;&#x7A0B;&#x7F16;&#x7801;-Run-Length-encoding"><a href="#&#x6E38;&#x7A0B;&#x7F16;&#x7801;-Run-Length-encoding" class="headerlink" title="&#x6E38;&#x7A0B;&#x7F16;&#x7801;(Run Length encoding)"></a>&#x6E38;&#x7A0B;&#x7F16;&#x7801;(Run Length encoding)</h5><p>&#x5E94;&#x7528;&#x4E8E;&#x91CD;&#x590D;&#x6570;&#x636E;&#x6BD4;&#x8F83;&#x591A;&#x7684;&#x573A;&#x666F;&#xFF0C;&#x6570;&#x636E;&#x91CD;&#x590D;&#x5C11;&#x65F6;&#x6548;&#x7387;&#x8F83;&#x4F4E;&#x3002;&#x6BD4;&#x5982;&#x5E94;&#x7528;&#x4E8E;&#x989C;&#x8272;&#x5355;&#x8C03;&#x56FE;&#x50CF;&#x538B;&#x7F29;&#x3002;</p>
+<h5 id="&#x5DEE;&#x5206;&#x7F16;&#x7801;&#xFF08;Delta-encoding"><a href="#&#x5DEE;&#x5206;&#x7F16;&#x7801;&#xFF08;Delta-encoding" class="headerlink" title="&#x5DEE;&#x5206;&#x7F16;&#x7801;&#xFF08;Delta encoding)"></a>&#x5DEE;&#x5206;&#x7F16;&#x7801;&#xFF08;Delta encoding)</h5><p>&#x53C8;&#x79F0;&#x589E;&#x91CF;&#x7F16;&#x7801;&#xFF0C;&#x5E94;&#x7528;&#x4E8E;&#x6570;&#x636E;&#x76F8;&#x90BB;&#x6CE2;&#x52A8;&#x4E0D;&#x5927;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x4FDD;&#x5B58;&#x524D;&#x540E;&#x6570;&#x636E;&#x7684;&#x5DEE;&#xFF0C;&#x8BE5;&#x503C;&#x76F8;&#x5BF9;&#x4E8E;&#x6570;&#x503C;&#x672C;&#x8EAB;&#x8F83;&#x5C0F;&#x3002;&#x901A;&#x8FC7;&#x8FD9;&#x6837;&#x7684;&#x65B9;&#x5F0F;&#x51CF;&#x5C11;&#x5B58;&#x50A8;&#x91CF;&#x3002;&#x6BD4;&#x5982;&#x7528;&#x4E8E;&#x4FDD;&#x5B58;&#x4E00;&#x5B9A;&#x65F6;&#x95F4;&#x8303;&#x56F4;&#x5185;&#x7684;&#x65F6;&#x95F4;&#x6233;&#x53D8;&#x91CF;&#x3002;</p>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2017-01-02T13:55:27.000Z" itemprop="datePublished">2017-01-02</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/lzo/">lzo</a>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/orc/">orc</a>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/编码/">编码</a>
+    </span>
+
+    
+
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a class="ui tiny button disabled"><i class="angle left icon"></i>前一篇</a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2016/12/25/为什么写博客/" class="ui tiny button">
+                    
+                    为什么写博客
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#压缩编码的目的"><span>压缩编码的目的</span></a></li><li><a href="#压缩方式选择"><span>压缩方式选择</span></a><ol><li><a href="#根据应用场合，在下面各个原则间进行平衡。"><span>根据应用场合，在下面各个原则间进行平衡。</span></a></li></ol></li><li><a href="#Mapreduce应用"><span>Mapreduce应用</span></a></li><li><a href="#MR常用压缩"><span>MR常用压缩</span></a><ol><li><a href="#LZO格式"><span>LZO格式</span></a><ol><li><a href="#lzop工具"><span>lzop工具</span></a></li><li><a href="#hadoop-lzo"><span>hadoop-lzo</span></a></li></ol></li><li><a href="#Snappy格式"><span>Snappy格式</span></a><ol><li><a href="#应用场景"><span>应用场景</span></a></li></ol></li><li><a href="#列式存储"><span>列式存储</span></a><ol><li><a href="#Orc格式"><span>Orc格式</span></a></li><li><a href="#其它压缩算法"><span>其它压缩算法</span></a><ol><li><a href="#游程编码-Run-Length-encoding"><span>游程编码(Run Length encoding)</span></a></li><li><a href="#差分编码（Delta-encoding"><span>差分编码（Delta encoding)</span></a></li></ol></li></ol></li></ol></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+
+  <section id="comments">
+    <!-- 多说评论框 start --> 
+    <div class="ds-thread" data-thread-key="_posts/Hadoop压缩.md" data-title="Hadoop压缩引申" data-url="http://yoursite.com/2017/01/02/Hadoop压缩/"></div>
+    <!-- 多说评论框 end --> 
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) --> 
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"wmymartin"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end --> 
+  </section>
+  
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">my</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>
